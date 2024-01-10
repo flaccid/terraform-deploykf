@@ -39,10 +39,6 @@
 > [!IMPORTANT]
 >  This module is no longer actively maintained
 {{- end }}
-{{- if (file.Exists "main.tf") }}
-
-We literally have [*hundreds of other terraform modules*][terraform_modules] that are Open Source and well-maintained. Check them out!
-{{- end }}
 
 {{ if has (ds "config") "description" }}
 ### Historical Description

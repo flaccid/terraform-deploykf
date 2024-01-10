@@ -20,7 +20,7 @@ categories:
   - terraform-components
 
 # Logo for this project
-#logo: docs/logo.png
+logo: docs/logo_banner.svg
 
 # License of this project
 license: "APACHE2"
@@ -33,9 +33,12 @@ description: |-
   Terraform module for deploying deployKF (Kubeflow distribution).
 
 introduction: |-
-  This terraform module is a work in progress. It's intent to provide the plumbing requirements for deployKF and provision it end-to-end for different use cases.
+  This terraform module is a work in progress. It's intent to provide the plumbing requirements for deployKF and provision it end-to-end for different use cases. User guides will be added in due course for common setups as they become supported.
 
-# How to use this project
+include:
+ - "docs/targets.md"
+ - "docs/terraform.md"
+
 usage: |-
   Currently a fully automated e2e deployment is not yet possible, however generally the steps are:
 
@@ -115,9 +118,6 @@ usage: |-
   terraform init
   terraform apply
   ```
-
-# include:
-#   - "docs/targets.md"
 
 # Contributors to this project
 contributors:
