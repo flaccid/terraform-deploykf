@@ -1,0 +1,13 @@
+.terraform
+.build-harness
+build-harness
+.terraform.lock.hcl
+terraform.tfvars
+terraform.tfstate
+app_of_apps_values.yaml
+.terraform.tfstate.*
+
+# test local files
+test/.terraform
+test/*.yaml
+test/terraform.tfstate.*

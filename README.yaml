@@ -1,0 +1,84 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: "terraform-deploykf"
+
+# Tags of this project
+tags:
+  - terraform
+  - terraform-modules
+  - reference-implementation
+  - reference-architecture
+
+# Categories of this project
+categories:
+  - terraform-modules/root
+  - terraform-components
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: "APACHE2"
+
+# Canonical GitHub repo
+github_repo: "flaccid/terraform-deploykf"
+
+# Short description of this project
+description: |-
+  Terraform module for deploying deployKF (Kubeflow distribution).
+
+introduction: |-
+  TBA
+
+# How to use this project
+usage: |-
+  ### Argo CD UI
+
+  Login with the default username (`admin`) and password retrieved using:
+
+  ```
+  echo $(kubectl -n argocd get secret/argocd-initial-admin-secret \
+    -o jsonpath="{.data.password}" | base64 -d)
+  ``` 
+
+  ### Kubeflow UI
+
+  TBA
+
+  ### Upstream Documentation
+
+  https://www.kubeflow.org/docs/started/installing-kubeflow/#packaged-distributions-of-kubeflow
+
+  #### deployKF
+
+  https://www.deploykf.org/guides/getting-started/
+
+  Pertinent links to this implementation:
+  - https://github.com/deployKF/deployKF/tree/main/argocd-plugin
+  - https://www.deploykf.org/guides/tools/external-mysql/
+  - https://www.deploykf.org/guides/tools/external-object-store/
+  - https://www.deploykf.org/guides/platform/deploykf-gateway/
+  - https://www.deploykf.org/reference/deploykf-values/
+  - https://www.deploykf.org/guides/getting-started/#default-login-credentials
+  - https://www.kubeflow.org/docs/components/central-dash/access/
+
+  ### Testing
+
+  git clone https://github.com/flaccid/terraform-deploykf.git
+  cd kubeflow/test
+  export KUBE_CONFIG_PATH=~/.kube/config
+  terraform-init
+  terraform apply
+
+# include:
+#   - "docs/targets.md"
+
+# Contributors to this project
+contributors:
+  - name: "Chris Fordham"
+    github: "flaccid"
