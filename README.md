@@ -1,8 +1,7 @@
 
 <!-- markdownlint-disable -->
-# terraform-deploykf<a href="https://cpco.io/homepage"><img align="right" src="https://cloudposse.com/logo-300x69.svg" width="150" /></a>
+# terraform-deploykf
 <!-- markdownlint-restore -->
-
 
 <!--
 
@@ -23,21 +22,54 @@ Terraform module for deploying deployKF (Kubeflow distribution).
 > It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 >
 
-[![README Header][readme_header_img]][readme_header_link]
-
-
 
 
 
 ## Introduction
 
-TBA
+This terraform module is a work in progress. It's intent to provide the plumbing requirements for deployKF and provision it end-to-end for different use cases.
 
 
 
 ## Usage
 
+Currently a fully automated e2e deployment is not yet possible, however generally the steps are:
 
+1. Call the module in your terraform state, e.g.:
+
+```
+module "deploy-kf" {
+  source = "git::https://github.com/flaccid/terraform-deploykf"
+
+  app_of_apps_values  = file("app-of-apps-values.yaml")
+  argocd_helm_values  = <<EOF
+configs:
+  params:
+    server.insecure: true
+
+server:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+      ingress.kubernetes.io/ssl-redirect: 'true'
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    ingressClassName: nginx
+    hosts:
+      - argocd.mydomain.com
+    tls:
+      - hosts:
+          - argocd.mydomain.com
+        secretName: argocd-mydomain-com-tls
+EOF
+  install_app_of_apps = true
+}
+```
+Populate `app-of-apps-values.yaml` with the values you need per your use case and environment.
+
+2. Sync the argocd apps per https://www.deploykf.org/guides/getting-started/
+3. Profit
 
 ### Argo CD UI
 
@@ -60,7 +92,8 @@ https://www.kubeflow.org/docs/started/installing-kubeflow/#packaged-distribution
 
 https://www.deploykf.org/guides/getting-started/
 
-Pertinent links to this implementation:
+##### Pertinent links for this implementation
+
 - https://github.com/deployKF/deployKF/tree/main/argocd-plugin
 - https://www.deploykf.org/guides/tools/external-mysql/
 - https://www.deploykf.org/guides/tools/external-object-store/
@@ -71,11 +104,13 @@ Pertinent links to this implementation:
 
 ### Testing
 
-git clone https://github.com/flaccid/terraform-deploykf.git
-cd kubeflow/test
+Populate any required variables in `test/terraform.tfvars`
+```
+cd test
 export KUBE_CONFIG_PATH=~/.kube/config
-terraform-init
+terraform init
 terraform apply
+```
 
 
 
@@ -141,9 +176,6 @@ All other trademarks referenced herein are the property of their respective owne
 Copyright © 2023-2024 Chris Fordham
 
 
-
-[![README Footer][readme_footer_img]][readme_footer_link]
-[![Beacon][beacon]][website]
 <!-- markdownlint-disable -->
 
 <!-- markdownlint-restore -->

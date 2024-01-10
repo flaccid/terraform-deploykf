@@ -5,7 +5,7 @@
 {{- if $deprecated }}
 # (deprecated) {{(ds "config").name}}{{ if gt (len (ds "config").name) 23 }}{{ print "\n\n" }}{{ end }}
 {{- else }}
-# {{(ds "config").name}}<a href="https://cpco.io/homepage"><img align="right" src="https://cloudposse.com/logo-300x69.svg" width="150" /></a>{{ if gt (len (ds "config").name) 34 }}{{ print "\n\n" }}{{ end }}
+# {{(ds "config").name}}{{ if gt (len (ds "config").name) 34 }}{{ print "\n\n" }}{{ end }}
 {{- end }}
 {{- if $deprecated }}[![deprecated](https://img.shields.io/badge/lifecycle-deprecated-critical)](#deprecated){{ end }}
   {{- if has (ds "config") "badges" }}
@@ -14,7 +14,6 @@
   {{- end }}
 {{- end }}
 <!-- markdownlint-restore -->
-
 
 <!--
 
@@ -77,21 +76,12 @@ We literally have [*hundreds of other terraform modules*][terraform_modules] tha
 > It's 100% Open Source and licensed under the [GNU General Public License](LICENSE).
 {{- end }}
 >
-{{- if not $deprecated }}
-{{- if (file.Exists "main.tf") }}
-> We literally have [*hundreds of terraform modules*][terraform_modules] that are Open Source and well-maintained. Check them out!
-{{- end }}
-{{ if not $deprecated }}
-[![README Header][readme_header_img]][readme_header_link]
-{{- end }}
-
 
 {{ if has (ds "config") "screenshots" }}
 ## Screenshots
 
 {{ range $screenshot := (ds "config").screenshots }}
 {{ printf "![%s](%s)\n*%s*" $screenshot.name $screenshot.url $screenshot.description }}{{ end }}
-{{- end }}
 {{- end }}
 
 {{ if has (ds "config") "introduction" }}
@@ -102,17 +92,6 @@ We literally have [*hundreds of other terraform modules*][terraform_modules] tha
 
 {{ if has (ds "config") "usage" }}
 ## Usage
-
-{{ if (file.Exists "main.tf") }}
-
-> **Important**
-> We do not pin modules to versions in Cloud Posse's examples because of the
-> difficulty of keeping the versions in the documentation in sync with the latest released versions.
-> We highly recommend that in your code you pin the version to the exact version you are
-> using so that your infrastructure remains stable, and update versions in a
-> systematic way so that they do not catch you by surprise.
-
-{{end}}
 
 {{ (ds "config").usage -}}
 {{ end }}
@@ -222,9 +201,6 @@ All other trademarks referenced herein are the property of their respective owne
 Copyright © 2023-{{ time.Now.Year }} Chris Fordham
 {{ end}}
 
-
-[![README Footer][readme_footer_img]][readme_footer_link]
-[![Beacon][beacon]][website]
 <!-- markdownlint-disable -->
 
 <!-- markdownlint-restore -->
