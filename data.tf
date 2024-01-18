@@ -13,6 +13,6 @@ data "aws_route53_zone" "kubeflow" {
 }
 
 data "aws_eks_cluster" "kubeflow" {
-  count = var.create_eks_cluster ? 0 : 1
+  count = var.existing_eks_cluster ? 1 : 0
   name  = var.cluster_name
 }

@@ -51,6 +51,12 @@ variable "create_zone_records" {
   default = false
 }
 
+variable "existing_eks_cluster" {
+  type        = bool
+  default     = false
+  description = "Use an existing eks cluster"
+}
+
 variable "hosted_zone_id" {
   default     = null
   description = "Route 53 hosted zone name for dns records"

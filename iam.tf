@@ -1,3 +1,4 @@
+# NOTE: allows all namespaces until enhanced
 resource "aws_iam_role" "kubeflow" {
   count = var.create_iam_resources && var.create_eks_cluster ? 1 : 0
 
@@ -14,9 +15,14 @@ resource "aws_iam_role" "kubeflow" {
         "Federated": "arn:aws:iam::${data.aws_caller_identity.current[0].account_id}:oidc-provider/${local.eks_oidc_issuer}"
       },
       "Condition": {
-        "StringEquals": {
-          "${local.eks_oidc_issuer}:aud": "sts.amazonaws.com",
-          "${local.eks_oidc_issuer}:sub": "system:serviceaccount:kubeflow:*"
+        "ForAnyValue:StringLike": {
+          "${local.eks_oidc_issuer}:aud": [
+            "sts.amazonaws.com"
+          ],
+          "${local.eks_oidc_issuer}:sub": [
+            "system:serviceaccount:kubeflow:*",
+            "system:serviceaccount:*:*"
+            ]
         }
       }
     }
