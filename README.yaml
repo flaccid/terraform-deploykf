@@ -35,6 +35,8 @@ description: |-
 introduction: |-
   This terraform module is a work in progress. It's intent to provide the plumbing requirements for deployKF and provision it end-to-end for different use cases. User guides will be added in due course for common setups as they become supported.
 
+  Requires an existing kubernetes cluster.
+
 include:
  - "docs/targets.md"
  - "docs/terraform.md"
@@ -77,6 +79,12 @@ usage: |-
 
   2. Sync the argocd apps per https://www.deploykf.org/guides/getting-started/
   3. Profit
+
+  ### On AWS
+
+  To provision for AWS, set variables `create_s3_buckets` and `create_iam_resources` to `true`.
+
+  Additionally, set `provision_rds_instance` to `true` if desiring to provision and use an RDS instance.
 
   ### Argo CD UI
 

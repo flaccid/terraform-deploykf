@@ -16,6 +16,16 @@ variable "argocd_chart_version" {
   default = "5.51.6"
 }
 
+variable "cluster_name" {
+  default     = "kubeflow"
+  description = "The name of the cluster to deploy kubeflow to (and to create if chosen)"
+}
+
+variable "create_eks_cluster" {
+  type    = bool
+  default = false
+}
+
 variable "create_iam_resources" {
   type    = bool
   default = false
@@ -39,11 +49,6 @@ variable "create_s3_buckets" {
 variable "create_zone_records" {
   type    = bool
   default = false
-}
-
-variable "eks_cluster_name" {
-  default     = null
-  description = "The name of the eks cluster to deploy kubeflow to"
 }
 
 variable "hosted_zone_id" {
@@ -99,4 +104,13 @@ variable "region" {
 
 variable "storage_class_name" {
   default = null
+}
+
+variable "subnet_ids" {
+  type        = list(string)
+  description = "List of subnet IDs to use for the eks cluster"
+}
+
+variable "vpc_id" {
+  description = "ID of VPC to deploy eks cluster to"
 }

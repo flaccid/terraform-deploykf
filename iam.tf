@@ -1,5 +1,6 @@
 resource "aws_iam_role" "kubeflow" {
-  count              = var.create_iam_resources ? 1 : 0
+  count = var.create_iam_resources && var.create_eks_cluster ? 1 : 0
+
   name               = "kubeflow"
   assume_role_policy = <<EOF
 {
@@ -10,7 +11,7 @@ resource "aws_iam_role" "kubeflow" {
       "Effect": "Allow",
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${local.eks_oidc_issuer}"
+        "Federated": "arn:aws:iam::${data.aws_caller_identity.current[0].account_id}:oidc-provider/${local.eks_oidc_issuer}"
       },
       "Condition": {
         "StringEquals": {
@@ -25,10 +26,11 @@ EOF
 }
 
 resource "aws_iam_policy" "kubeflow-storage" {
-  count       = var.create_iam_resources ? 1 : 0
-  name        = "kubeflow-storage"
+  count = var.create_iam_resources && var.create_eks_cluster ? 1 : 0
+
+  name        = "kubeflow-pipelines-storage"
   path        = "/"
-  description = "External storage for kubeflow"
+  description = "External storage for Kubeflow Pipelines"
   policy      = <<EOF
 {
   "Version": "2012-10-17",
@@ -62,7 +64,8 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "kubeflow-storage" {
-  count      = var.create_iam_resources ? 1 : 0
+  count = var.create_iam_resources && var.create_eks_cluster ? 1 : 0
+
   role       = aws_iam_role.kubeflow[0].name
   policy_arn = aws_iam_policy.kubeflow-storage[0].arn
 
