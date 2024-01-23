@@ -51,6 +51,14 @@ variable "create_zone_records" {
   default = false
 }
 
+variable "deploykf_repo_url" {
+  default = "https://github.com/thesuperzapper/deployKF.git"
+}
+
+variable "deploykf_repo_ref" {
+  default = "v0.1.3"
+}
+
 variable "existing_eks_cluster" {
   type        = bool
   default     = false
