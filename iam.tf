@@ -8,21 +8,16 @@ resource "aws_iam_role" "kubeflow" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "GitlabRegistry",
+      "Sid": "Kubeflow",
       "Effect": "Allow",
-      "Action": "sts:AssumeRoleWithWebIdentity",
       "Principal": {
         "Federated": "arn:aws:iam::${data.aws_caller_identity.current[0].account_id}:oidc-provider/${local.eks_oidc_issuer}"
       },
+      "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
-        "ForAnyValue:StringLike": {
-          "${local.eks_oidc_issuer}:aud": [
-            "sts.amazonaws.com"
-          ],
-          "${local.eks_oidc_issuer}:sub": [
-            "system:serviceaccount:kubeflow:*",
-            "system:serviceaccount:*:*"
-            ]
+          "StringLike": {
+              "${local.eks_oidc_issuer}:sub": "system:serviceaccount:*:*"
+          }
         }
       }
     }
