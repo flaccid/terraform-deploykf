@@ -121,10 +121,12 @@ variable "storage_class_name" {
 }
 
 variable "subnet_ids" {
+  default     = null
   type        = list(string)
   description = "List of subnet IDs to use for the eks cluster"
 }
 
 variable "vpc_id" {
+  default     = null
   description = "ID of VPC to deploy eks cluster to"
 }
