@@ -64,7 +64,7 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "kubeflow-storage" {
-  count = var.create_iam_resources && var.create_eks_cluster ? 1 : 0
+  count = var.create_iam_resources ? 1 : 0
 
   role       = aws_iam_role.kubeflow[0].name
   policy_arn = aws_iam_policy.kubeflow-storage[0].arn
