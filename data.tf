@@ -1,5 +1,5 @@
 data "aws_caller_identity" "current" {
-  count = var.create_eks_cluster ? 1 : 0
+  count = var.create_eks_cluster || var.create_iam_resources ? 1 : 0
 }
 
 data "http" "argocd-deploykf-plugin" {

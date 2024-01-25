@@ -1,6 +1,6 @@
 # NOTE: allows all namespaces until enhanced
 resource "aws_iam_role" "kubeflow" {
-  count = var.create_iam_resources && var.create_eks_cluster ? 1 : 0
+  count = var.create_iam_resources ? 1 : 0
 
   name               = "kubeflow"
   assume_role_policy = <<EOF
@@ -27,7 +27,7 @@ EOF
 }
 
 resource "aws_iam_policy" "kubeflow-storage" {
-  count = var.create_iam_resources && var.create_eks_cluster ? 1 : 0
+  count = var.create_iam_resources ? 1 : 0
 
   name        = "kubeflow-pipelines-storage"
   path        = "/"
