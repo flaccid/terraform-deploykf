@@ -98,6 +98,12 @@ variable "kubeflow_database_password" {
   description = "The kubeflow database password"
 }
 
+variable "kubeflow_iam_role_arn" {
+  default     = null
+  description = "The IAM role ARN to use for kubeflow (optional)"
+}
+
+
 variable "mysql_host" {
   default     = "localhost"
   description = "Hostname to connect to for the mysql database server"
