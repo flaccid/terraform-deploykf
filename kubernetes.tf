@@ -14,6 +14,8 @@ resource "kubernetes_namespace" "argo-cd" {
 }
 
 resource "kubernetes_namespace" "deploykf-auth" {
+  count = var.create_deploykf_auth_namespace ? 1 : 0
+
   metadata {
     name = "deploykf-auth"
   }

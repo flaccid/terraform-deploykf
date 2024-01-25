@@ -36,6 +36,11 @@ variable "create_argocd_namespace" {
   default = true
 }
 
+variable "create_deploykf_auth_namespace" {
+  type    = bool
+  default = true
+}
+
 variable "create_kubeflow_namespace" {
   type    = bool
   default = true
