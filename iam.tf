@@ -10,14 +10,13 @@ resource "aws_iam_role" "kubeflow" {
     {
       "Sid": "Kubeflow",
       "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity.current[0].account_id}:oidc-provider/${local.eks_oidc_issuer}"
-      },
       "Action": "sts:AssumeRoleWithWebIdentity",
+      "Principal": {
+        "Federated": "arn:aws:iam::${data.aws_caller_identity[0].current.account_id}:oidc-provider/${local.eks_oidc_issuer}"
+      },
       "Condition": {
-          "StringLike": {
-              "${local.eks_oidc_issuer}:sub": "system:serviceaccount:*:*"
-          }
+        "StringLike": {
+          "${local.eks_oidc_issuer}:sub": "system:serviceaccount:*:*"
         }
       }
     }
