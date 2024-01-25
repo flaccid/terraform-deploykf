@@ -103,6 +103,10 @@ resource "kubernetes_manifest" "app-of-apps" {
     }))
     repoURL        = var.deploykf_repo_url
     targetRevision = var.deploykf_repo_ref
+    sourceYaml = templatefile("${path.module}/files/generator-source.yaml.tftpl", {
+      sourceType   = length(var.deploykf_plugin_source_version) > 0 ? "version" : "path"
+      sourceString = length(var.deploykf_plugin_source_version) > 0 ? var.deploykf_plugin_source_version : var.deploykf_plugin_source_path
+    })
   }))
 
   depends_on = [

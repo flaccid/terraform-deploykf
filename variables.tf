@@ -61,8 +61,16 @@ variable "create_zone_records" {
   default = false
 }
 
+variable "deploykf_plugin_source_version" {
+  default = "v0.1.3"
+}
+
+variable "deploykf_plugin_source_path" {
+  default = null
+}
+
 variable "deploykf_repo_url" {
-  default = "https://github.com/thesuperzapper/deployKF.git"
+  default = "https://github.com/deployKF/deployKF.git"
 }
 
 variable "deploykf_repo_ref" {
