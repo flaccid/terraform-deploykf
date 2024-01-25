@@ -12,7 +12,7 @@ resource "aws_iam_role" "kubeflow" {
       "Effect": "Allow",
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Principal": {
-        "Federated": "arn:aws:iam::${data.aws_caller_identity[0].current.account_id}:oidc-provider/${local.eks_oidc_issuer}"
+        "Federated": "arn:aws:iam::${data.aws_caller_identity.current[0].account_id}:oidc-provider/${local.eks_oidc_issuer}"
       },
       "Condition": {
         "StringLike": {
