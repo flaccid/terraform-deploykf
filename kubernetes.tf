@@ -27,6 +27,8 @@ resource "kubernetes_namespace" "deploykf-auth" {
 }
 
 resource "kubernetes_namespace" "kubeflow" {
+  count = var.create_kubeflow_namespace ? 1 : 0
+
   metadata {
     name = "kubeflow"
   }
