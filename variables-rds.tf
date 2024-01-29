@@ -10,7 +10,7 @@ variable "rds_instance_class" {
 }
 
 variable "rds_name_prefix" {
-  default     = "kubeflow-poc"
+  default     = "kubeflow"
   description = "Prefix string to use for the RDS database name"
 }
 
