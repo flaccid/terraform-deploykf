@@ -13,7 +13,7 @@ variable "argocd_namespace" {
 }
 
 variable "argocd_chart_version" {
-  default = "5.51.6"
+  default = "7.6.5"
 }
 
 variable "cluster_name" {
