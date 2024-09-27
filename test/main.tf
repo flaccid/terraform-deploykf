@@ -1,7 +1,7 @@
 module "deploy-kf" {
   source = "../"
 
-  app_of_apps_values    = file("./app_of_apps_values.yaml")
+  app_of_apps_values    = file("../files/app-of-apps-values.yaml.tftpl")
   argocd_helm_values    = var.argocd_helm_values
   create_eks_cluster    = var.create_eks_cluster
   create_iam_resources  = var.create_iam_resources
