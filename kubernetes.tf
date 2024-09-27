@@ -116,6 +116,8 @@ resource "kubernetes_manifest" "app-of-apps" {
 }
 
 resource "kubernetes_secret" "kubeflow-db-credentials" {
+  count = var.provision_rds_instance ? 1 : 0
+
   metadata {
     name      = "kubeflow-db-credentials"
     namespace = "kubeflow"
