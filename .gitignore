@@ -11,3 +11,4 @@ app_of_apps_values.yaml
 test/.terraform
 test/*.yaml
 test/terraform.tfstate.*
+local.auto.tfvars

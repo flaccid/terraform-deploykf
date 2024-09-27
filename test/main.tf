@@ -3,6 +3,7 @@ module "deploy-kf" {
 
   app_of_apps_values    = file("../files/app-of-apps-values.yaml.tftpl")
   argocd_helm_values    = var.argocd_helm_values
+  argocd_namespace      = var.argocd_namespace
   create_eks_cluster    = var.create_eks_cluster
   create_iam_resources  = var.create_iam_resources
   create_s3_buckets     = var.create_s3_buckets
