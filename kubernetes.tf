@@ -46,7 +46,7 @@ resource "kubernetes_namespace" "kubeflow" {
 resource "kubernetes_config_map" "argocd-deploykf-plugin" {
   metadata {
     name      = "argocd-deploykf-plugin"
-    namespace = kubernetes_namespace.argo-cd[0].metadata[0].name
+    namespace = var.argocd_namespace
   }
 
   data = {
