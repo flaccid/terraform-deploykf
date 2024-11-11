@@ -16,6 +16,10 @@ variable "argocd_chart_version" {
   default = "7.6.5"
 }
 
+variable "argocd_deployment_name" {
+  default = "argo-cd-argocd-repo-server"
+}
+
 variable "cluster_name" {
   default     = "kubeflow"
   description = "The name of the cluster to deploy kubeflow to (and to create if chosen)"
