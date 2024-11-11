@@ -102,6 +102,11 @@ variable "install_argocd" {
   default = true
 }
 
+variable "install_argocd_deploykf_plugin" {
+  type    = bool
+  default = true
+}
+
 variable "install_app_of_apps" {
   type    = bool
   default = false

@@ -44,6 +44,8 @@ resource "kubernetes_namespace" "kubeflow" {
 }
 
 resource "kubernetes_config_map" "argocd-deploykf-plugin" {
+  count = var.install_argocd_deploykf_plugin ? 1 : 0
+
   metadata {
     name      = "argocd-deploykf-plugin"
     namespace = var.argocd_namespace
@@ -55,6 +57,8 @@ resource "kubernetes_config_map" "argocd-deploykf-plugin" {
 }
 
 resource "kubernetes_persistent_volume_claim" "argocd-deploykf-plugin-assets" {
+  count = var.install_argocd_deploykf_plugin ? 1 : 0
+
   metadata {
     name      = "argocd-deploykf-plugin-assets"
     namespace = var.argocd_namespace
