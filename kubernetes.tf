@@ -80,7 +80,13 @@ resource "kubernetes_persistent_volume_claim" "argocd-deploykf-plugin-assets" {
 # (modified due to installation by helm which has a prefixed deployment name)
 resource "null_resource" "patch-argocd-repo-server" {
   provisioner "local-exec" {
-    command = "kubectl patch deployment ${var.argocd_deployment_name} --namespace=${var.argocd_namespace} --patch=${local.repo_server_patch}"
+    command = <<EOF
+      tmpfile=$(mktemp /tmp/tf.XXXXXX)
+      cp -v ${path.module}/files/argocd-repo-server-patch.yaml "$tmpfile"
+      sed -i 's/#name#/${var.argocd_deployment_name}/g' "$tmpfile"
+      kubectl patch deployment ${var.argocd_deployment_name} --namespace=${var.argocd_namespace} --patch-file="$tmpfile"
+      rm "$tmpfile"
+    EOF
   }
 
   depends_on = [
