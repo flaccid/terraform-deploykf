@@ -1,6 +1,7 @@
 module "deploy-kf" {
   source = "../"
 
+  app_of_apps_name        = "test-deploykf-app-of-apps"
   app_of_apps_values      = file("../files/app-of-apps-values.yaml.tftpl")
   argocd_deployment_name  = "argocd-repo-server"
   argocd_helm_values      = var.argocd_helm_values

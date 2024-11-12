@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: deploykf-app-of-apps
+  name: ${name}
   namespace: ${namespace}
   labels:
     app.kubernetes.io/name: deploykf-app-of-apps

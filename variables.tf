@@ -3,6 +3,11 @@ variable "app_of_apps_values" {
   description = "Application values for the 'app of apps' argocd application"
 }
 
+variable "app_of_apps_name" {
+  default     = "deploykf-app-of-apps"
+  description = "Name of the app of apps argocd application."
+}
+
 variable "argocd_helm_values" {
   default     = ""
   description = "Helm values for the argocd deployment"

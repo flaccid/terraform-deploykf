@@ -111,6 +111,7 @@ resource "kubernetes_manifest" "app-of-apps" {
       "iam_role_arn"  = local.iam_role_arn
       "mysql_host"    = local.mysql_host
     }))
+    name           = var.app_of_apps_name
     namespace      = var.argocd_namespace
     repoURL        = var.deploykf_repo_url
     targetRevision = var.deploykf_repo_ref
