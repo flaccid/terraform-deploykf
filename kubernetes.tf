@@ -113,6 +113,7 @@ resource "kubernetes_manifest" "app-of-apps" {
     }))
     name           = var.app_of_apps_name
     namespace      = var.argocd_namespace
+    project        = var.argocd_project
     repoURL        = var.deploykf_repo_url
     targetRevision = var.deploykf_repo_ref
     sourceYaml = templatefile("${path.module}/files/generator-source.yaml.tftpl", {

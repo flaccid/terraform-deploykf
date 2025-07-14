@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: deploykf-app-of-apps
     app.kubernetes.io/part-of: deploykf
 spec:
-  project: "default"
+  project: "${project}"
   source:
     ## source git repo configuration
     ##  - we use the 'deploykf/deploykf' repo so we can read its 'sample-values.yaml'

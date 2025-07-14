@@ -8,6 +8,14 @@ variable "app_of_apps_name" {
   description = "Name of the app of apps argocd application."
 }
 
+variable "argocd_chart_version" {
+  default = "8.1.3"
+}
+
+variable "argocd_deployment_name" {
+  default = "argo-cd-argocd-repo-server"
+}
+
 variable "argocd_helm_values" {
   default     = ""
   description = "Helm values for the argocd deployment"
@@ -17,12 +25,8 @@ variable "argocd_namespace" {
   default = "argocd"
 }
 
-variable "argocd_chart_version" {
-  default = "7.6.5"
-}
-
-variable "argocd_deployment_name" {
-  default = "argo-cd-argocd-repo-server"
+variable "argocd_project" {
+  default = "default"
 }
 
 variable "cluster_name" {
