@@ -75,7 +75,7 @@ variable "create_zone_records" {
 }
 
 variable "deploykf_plugin_source_version" {
-  default = "v0.1.5"
+  default = "0.1.5"
 }
 
 variable "deploykf_plugin_source_path" {
