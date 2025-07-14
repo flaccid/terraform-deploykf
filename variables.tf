@@ -87,7 +87,7 @@ variable "deploykf_repo_url" {
 }
 
 variable "deploykf_repo_ref" {
-  default = "v0.1.4"
+  default = "v0.1.5"
 }
 
 variable "existing_eks_cluster" {
