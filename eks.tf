@@ -10,20 +10,15 @@ data "aws_availability_zones" "available" {
 }
 
 module "kubeflow-eks-cluster" {
-  count = var.create_eks_cluster ? 1 : 0
+  count   = var.create_eks_cluster ? 1 : 0
+  source  = "terraform-aws-modules/eks/aws"
+  version = "21.1.3"
 
-  source                         = "terraform-aws-modules/eks/aws"
-  version                        = "19.15.3"
-  cluster_name                   = var.cluster_name
-  cluster_version                = "1.28"
-  vpc_id                         = var.vpc_id
-  subnet_ids                     = var.subnet_ids
-  cluster_endpoint_public_access = true
-
-  eks_managed_node_group_defaults = {
-    ami_type = "AL2_x86_64"
-
-  }
+  name                   = var.cluster_name
+  kubernetes_version     = "1.33"
+  vpc_id                 = var.vpc_id
+  subnet_ids             = var.subnet_ids
+  endpoint_public_access = true
 
   eks_managed_node_groups = {
     one = {
